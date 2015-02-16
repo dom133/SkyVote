@@ -13,6 +13,7 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
+import Lib.Config;
 import Player.Commands;
 
 public class SkyVote extends JavaPlugin implements Listener{

@@ -57,13 +57,13 @@ public class Commands implements CommandExecutor{
 		plugin.vote_last.put("glos1", glos1);
 		plugin.vote_last.put("glos2", glos2);
 		plugin.vote.put("czas", czas);
-		if(czas==null)
+		if(Integer.valueOf(czas)==null)
 		{
 			player.sendMessage(ChatColor.RED+plugin.messages.get("g30").toString());
 		}
 		else
 		{
-			int czas1 = Integer.parseInt(czas);
+			int czas1 = Integer.valueOf(czas);
 			plugin.vote_info = new VoteInfo(plugin, vip).runTaskTimer(plugin, 20, 20*czas1/3);
 			plugin.vote_delete = new VoteDelete(plugin, vip).runTaskLater(plugin, 20*czas1);
 			plugin.ScoreBoardCreate();
@@ -122,7 +122,7 @@ public class Commands implements CommandExecutor{
 										Glosowani(player, args[1], args[2], args[3], args[4], null);
 										return true;
 									}
-									else if(args.length ==6)
+									else if(args.length >=6)
 									{
 										Glosowani(player, args[1], args[2], args[3], args[4], args[5]);
 										return true;
