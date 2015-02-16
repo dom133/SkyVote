@@ -1,0 +1,28 @@
+name: SkyVote
+main: pl.dom133.skyvote.SkyVote
+version: 1.0.2
+
+permissions:
+    svote.*:
+        description: Daje dostep do wszystkich komend
+        children:
+            svote.add: true
+            svote.glos: true
+            svote.vip: true
+            svote.remove: true
+    svote.add:
+        description: Daje dostep do dodawania glosowania
+        default: op
+    svote.glos:
+        description: Daje mozliwosc oddania glosu
+        default: op  
+    svote.vip:
+        description: Daje mozliwosc tworzenia glosowania tylko dala vip 
+        default: op 
+    svote.remove: 
+        description: Daje mozliwosc usuwania glosowan
+        default: op           
+commands:
+   svote:
+      description: Podaje dostepne komendy
+      usage: /svote                                  

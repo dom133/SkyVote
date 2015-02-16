@@ -1,0 +1,30 @@
+g1: Glosowanie
+g2: Glosowanie dodane
+g3: Tak
+g4: tak
+g5: Dostepne komendy /svote help
+g6: Nie mozesz wykonac tej komendy w konsoli!!!
+g7: Aby zaglosowac uzyj komendy /svote %0 albo /svote %1
+g8: graczy za
+g9: graczy przeciw
+g10: Ostatnie wyniki glosowania
+g11: Ostatnio nie bylo zadnego glosowania!!!
+g12: Glosowanie usuniete!!!
+g13: Aktualnie nie ma glosowania!!!
+g14: Nie mozesz wykonac tej komendy!!!
+g15: Autorem pluginu jest
+g16: Aktualnie trwa glosowanie tylko dla vip!!!
+g17: Brales udzial w glosowaniu!!!
+g18: Nie mozesz brac udzialu w glosowaniu!!!
+g19: Glos oddany
+g20: Bledny glos!!!
+g21: /svote <glos> - Daje mozliwosc oddania glosu
+g22: /svote last - Pokazuje wynik ostatniego glosowania
+g23: /svote autor - Pokazuje autora pluginu
+g24: /svote add <tresc> <glos1> <glos2> <czas trwania> <tyklko vip> - Dodaje glosowanie
+g25: /svote remove - Usuwa trwajace glosowanie
+g26: Nie podales ktoregos z argumentow!!!
+g27: Glosowanie zakonczoe
+g28: Wyniki to
+g29: Obecnie, trwa juz glosowanie
+g30: Czas trwania glosowania jest nieprawidlowy!!!
