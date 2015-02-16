@@ -14,6 +14,7 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
 import Lib.Config;
+import Lib.VersionChecker;
 import Player.Commands;
 
 public class SkyVote extends JavaPlugin implements Listener{
@@ -26,9 +27,12 @@ public class SkyVote extends JavaPlugin implements Listener{
 	public BukkitTask vote_info;
 	public BukkitTask vote_delete;
 	public String lang;
+	public boolean checker;
 	Scoreboard sb;
 	Objective objective;
 	ScoreboardManager manager;
+	public String updatemsg;
+	private VersionChecker updatechecker;
 	
 	public void ScoreBoardCreate()
 	{
@@ -62,10 +66,13 @@ public class SkyVote extends JavaPlugin implements Listener{
 		String lang = Config.getConfig("config").getString("DataSource.lang");
 		Config.registerConfig("message", "messages_"+lang.toLowerCase()+".yml", this);
 		Config.load("message");
-		for(int i=1; i<=30; ++i)
+		for(int i=1; i<=32; ++i)
 		{
 			messages.put("g"+i, Config.getConfig("message").getString("g"+i));
 		}
+		updatemsg = messages.get("g31").toString();
+		updatechecker = new VersionChecker(this);
+		updatechecker.startUpdateCheck();
 	}
 	
 	@Override

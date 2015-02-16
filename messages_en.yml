@@ -28,3 +28,5 @@ g27: Poll ending in
 g28: Results are
 g29: Currently, it takes longer vote
 g30: The duration of the vote is invalid!!!
+g31: The new version of the plugin is available!!!
+g32: Checking for a new version...
