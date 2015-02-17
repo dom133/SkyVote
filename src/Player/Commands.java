@@ -26,7 +26,7 @@ public class Commands implements CommandExecutor{
 		if(arg.equals(plugin.vote.get("glos1").toString()))
 		{
 			plugin.playervote.put(player.getDisplayName(), 0);
-			plugin.glosy[0] =1;
+			plugin.glosy[0] +=1;
 			player.sendMessage(ChatColor.GOLD+plugin.messages.get("g19").toString());
 			plugin.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore(ChatColor.GREEN+plugin.vote.get("glos1")+": ").setScore(plugin.glosy[0]);
 			return true;
@@ -34,7 +34,7 @@ public class Commands implements CommandExecutor{
 		else if(arg.equals(plugin.vote.get("glos2").toString()))
 		{
 			plugin.playervote.put(player.getDisplayName(), 1);
-			plugin.glosy[1] =1;
+			plugin.glosy[1] +=1;
 			player.sendMessage(ChatColor.GOLD+plugin.messages.get("g19").toString());
 			plugin.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore(ChatColor.GREEN+plugin.vote.get("glos2")+": ").setScore(plugin.glosy[1]);
 			return true;
