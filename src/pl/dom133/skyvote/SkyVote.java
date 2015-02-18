@@ -1,5 +1,12 @@
 package pl.dom133.skyvote;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +21,7 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
 import Lib.Config;
+import Lib.HttpFile;
 import Lib.VersionChecker;
 import Player.Commands;
 
@@ -43,6 +51,24 @@ public class SkyVote extends JavaPlugin implements Listener{
 		objective.setDisplayName(messages.get("g1").toString());
 	}
 	
+	@SuppressWarnings("resource")
+	public void Download(String url, String filename)
+	{
+		try {
+			HttpFile hf = new HttpFile(
+			        new URL(url));
+			File pdf = new File(filename);
+			FileChannel ch = new FileOutputStream(pdf).getChannel();
+			ch.write(ByteBuffer.wrap(hf.getData()));
+			ch.close();
+		} catch (MalformedURLException e) {
+			System.out.println(e);
+		} catch (IOException e) {
+			System.out.println(e);
+		}
+
+	}
+	
 	public Scoreboard getScoreboard()
 	{
 		return this.sb;
@@ -64,14 +90,35 @@ public class SkyVote extends JavaPlugin implements Listener{
 		Config.registerConfig("config", "config.yml", this);
 		Config.load("config");
 		String lang = Config.getConfig("config").getString("DataSource.lang");
+		updatechecker = new VersionChecker(this);
+		File message = new File("plugins/SkyVote/messages_"+lang.toLowerCase()+".yml");
+				
+		if(updatechecker.rawMessage("https://raw.githubusercontent.com/dom133/SkyVote/master/messages_"+lang.toLowerCase()+".yml")==null)
+		{
+			lang = "en";
+			Config.getConfig("config").set("DataSource.lang", lang);
+			Download("https://raw.githubusercontent.com/dom133/SkyVote/master/messages_"+lang.toLowerCase()+".yml", "plugins/SkyVote/messages_"+lang.toLowerCase()+".yml");
+			Config.saveAll();
+		}
+		else if(message.exists()==false)
+		{
+			Download("https://raw.githubusercontent.com/dom133/SkyVote/master/messages_"+lang.toLowerCase()+".yml", "plugins/SkyVote/messages_"+lang.toLowerCase()+".yml");
+		}
+		else if(updatechecker.rawMessage("https://rawgit.com/dom133/SkyVote/master/version.txt")!=getDescription().getVersion())
+		{
+			Download("https://raw.githubusercontent.com/dom133/SkyVote/master/messages_"+lang.toLowerCase()+".yml", "plugins/SkyVote/messages_"+lang.toLowerCase()+".yml");			
+		}
+		
 		Config.registerConfig("message", "messages_"+lang.toLowerCase()+".yml", this);
 		Config.load("message");
-		for(int i=1; i<=32; ++i)
+		
+		int i = 1;
+		while(true)
 		{
-			messages.put("g"+i, Config.getConfig("message").getString("g"+i));
+			if(Config.getConfig("message").getString("g"+i)==null) break;
+			else messages.put("g"+i, Config.getConfig("message").getString("g"+i)); i++;
 		}
 		updatemsg = messages.get("g31").toString();
-		updatechecker = new VersionChecker(this);
 		updatechecker.startUpdateCheck();
 	}
 	

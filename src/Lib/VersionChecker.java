@@ -53,4 +53,20 @@ public class VersionChecker {
             }
         }
     }
+	
+	public String rawMessage(String url1) {
+            try {
+                URL url = new URL(url1);
+                BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
+                String str;
+                while ((str = br.readLine()) != null) {
+                	String line = str;
+                	return line;
+                }
+                br.close();
+            } catch (IOException e) {
+            	return null;
+            }
+		return null;
+    }
 }
