@@ -57,7 +57,7 @@ public class Commands implements CommandExecutor{
 		plugin.vote_last.put("glos1", glos1);
 		plugin.vote_last.put("glos2", glos2);
 		plugin.vote.put("czas", czas);
-		if(Integer.valueOf(czas)==null)
+		if(plugin.isInteger(czas)==false)
 		{
 			player.sendMessage(ChatColor.RED+plugin.messages.get("g30").toString());
 		}

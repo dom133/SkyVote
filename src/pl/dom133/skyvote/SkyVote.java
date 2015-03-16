@@ -51,6 +51,16 @@ public class SkyVote extends JavaPlugin implements Listener{
 		objective.setDisplayName(messages.get("g1").toString());
 	}
 	
+	public boolean isInteger(String s) {
+	    try { 
+	        Integer.parseInt(s); 
+	    } catch(NumberFormatException e) { 
+	        return false; 
+	    }
+	    // only got here if we didn't return false
+	    return true;
+	}
+	
 	@SuppressWarnings("resource")
 	public void Download(String url, String filename)
 	{
