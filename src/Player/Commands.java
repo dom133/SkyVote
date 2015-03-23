@@ -46,23 +46,25 @@ public class Commands implements CommandExecutor{
 		}
 	}
 	
-	public void Glosowani(Player player, String tresc, String glos1, String glos2, String czas, String vip)
+	public void Glosowani(Player player, String console,String tresc, String glos1, String glos2, String czas, String vip)
 	{
 		tresc = tresc.replaceAll("&", " ");
-		plugin.vote.put("tresc", tresc);
-		plugin.vote.put("glos1", glos1);
-		plugin.vote.put("glos2", glos2);
-		plugin.vote.put("vip", vip);
-		plugin.vote_last.put("tresc", tresc);
-		plugin.vote_last.put("glos1", glos1);
-		plugin.vote_last.put("glos2", glos2);
-		plugin.vote.put("czas", czas);
+
 		if(plugin.isInteger(czas)==false)
 		{
-			player.sendMessage(ChatColor.RED+plugin.messages.get("g30").toString());
+			if(console.equals("nie"))player.sendMessage(ChatColor.RED+plugin.messages.get("g30").toString());
 		}
 		else
 		{
+			plugin.vote.put("tresc", tresc);
+			plugin.vote.put("glos1", glos1);
+			plugin.vote.put("glos2", glos2);
+			plugin.vote.put("vip", vip);
+			plugin.vote_last.put("tresc", tresc);
+			plugin.vote_last.put("glos1", glos1);
+			plugin.vote_last.put("glos2", glos2);
+			plugin.vote.put("czas", czas);
+			
 			int czas1 = Integer.valueOf(czas);
 			plugin.vote_info = new VoteInfo(plugin, vip).runTaskTimer(plugin, 20, 20*czas1/3);
 			plugin.vote_delete = new VoteDelete(plugin, vip).runTaskLater(plugin, 20*czas1);
@@ -87,7 +89,7 @@ public class Commands implements CommandExecutor{
 			}
 			plugin.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore(ChatColor.GREEN+glos1+": ").setScore(0);
 			plugin.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore(ChatColor.GREEN+glos2+": ").setScore(0);
-			player.sendMessage(ChatColor.GOLD+plugin.messages.get("g2").toString());
+			if(console.equals("nie"))player.sendMessage(ChatColor.GOLD+plugin.messages.get("g2").toString());
 		}
 	}
 	
@@ -119,12 +121,12 @@ public class Commands implements CommandExecutor{
 								{
 									if(args.length == 5)
 									{
-										Glosowani(player, args[1], args[2], args[3], args[4], null);
+										Glosowani(player, "nie", args[1], args[2], args[3], args[4], null);
 										return true;
 									}
 									else if(args.length >=6)
 									{
-										Glosowani(player, args[1], args[2], args[3], args[4], args[5]);
+										Glosowani(player, "nie", args[1], args[2], args[3], args[4], args[5]);
 										return true;
 									}
 									else
@@ -244,20 +246,106 @@ public class Commands implements CommandExecutor{
 								return true;
 							}
 					    }	
+						
+					   }
+					}
+					else
+					{
+						player.sendMessage(ChatColor.GOLD+plugin.messages.get("g5").toString());
+							return true;
 					}
 				}
 				else
 				{
-					player.sendMessage(ChatColor.GOLD+plugin.messages.get("g5").toString());
-					return true;
+						if(args.length > 0)
+						{
+							switch(args[0])
+							{
+								case "help":
+								{
+									System.out.println(plugin.messages.get("g21").toString());
+									System.out.println(plugin.messages.get("g22").toString());
+									System.out.println(plugin.messages.get("g23").toString());
+									System.out.println(plugin.messages.get("g24").toString());
+									System.out.println(plugin.messages.get("g25").toString());
+									return true;
+								}
+								case "add":
+								{
+										if(plugin.vote.get("tresc")==null)
+										{
+											if(args.length == 5)
+											{
+												Glosowani(null, "tak", args[1], args[2], args[3], args[4], null);
+												return true;
+											}
+											else if(args.length >=6)
+											{
+												Glosowani(null, "tak",args[1], args[2], args[3], args[4], args[5]);
+												return true;
+											}
+											else
+											{
+												System.out.println(plugin.messages.get("g26").toString());
+												return true;
+											}
+										}
+										else
+										{
+											System.out.println(plugin.messages.get("g29").toString());
+											return true;
+										}
+								}
+								case "last":
+								{
+									if(plugin.vote_last.get("tresc")!=null)
+									{
+										System.out.println(plugin.messages.get("g10").toString()+":");
+										System.out.println(plugin.vote_last.get("glos1")+": "+plugin.glosy[0]+" "+plugin.messages.get("g8").toString());
+										System.out.println(plugin.vote_last.get("glos2")+": "+plugin.glosy[1]+" "+plugin.messages.get("g9").toString());
+										return true;
+									}
+									else
+									{
+										System.out.println(plugin.messages.get("g11").toString());
+										return true;
+									}
+								}
+								case "remove":
+								{
+										if(plugin.vote.get("tresc")!=null)
+										{
+											plugin.playervote.clear();
+											plugin.vote.clear();
+											plugin.vote_last.clear();
+											plugin.vote_info.cancel();
+											plugin.vote_delete.cancel();
+											plugin.glosy[0]=0;
+											plugin.glosy[1]=0;
+											plugin.ScoreBoardClear();
+											System.out.println(ChatColor.GOLD+plugin.messages.get("g12").toString());
+											return true;
+										}
+										else
+										{
+											System.out.println(ChatColor.RED+plugin.messages.get("g13").toString());
+											return true;
+										}
+								}
+								case "autor":
+								{
+									System.out.println(plugin.messages.get("g15").toString()+" dom133");
+									return true;
+								}
+							}
+						}
+						else
+						{
+								System.out.println(plugin.messages.get("g5").toString());
+								return true;
+						}
 				}
 			}
-			else
-			{
-				System.out.println(plugin.messages.get("g6").toString());
-				return true;
-			}
-		}
 		return false;
 	}
 
