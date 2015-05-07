@@ -24,7 +24,7 @@ g23: /svote autor - Show The autor of this plugin
 g24: /svote add <contents> <voice1> <voice2> <duration> <only vip> - Adds vote
 g25: /svote remove - Removes the ongoing vote
 g26: You have not entered will one of the arguments!!!
-g27: Poll ending in
+g27: Poll ending
 g28: Results are
 g29: Currently, it takes longer vote
 g30: The duration of the vote is invalid!!!

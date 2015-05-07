@@ -19,10 +19,11 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
+import org.mcstats.Metrics;
 
 import Lib.Config;
 import Lib.HttpFile;
-import Lib.VersionChecker;
+import Lib.VersionCheckerSV;
 import Player.Commands;
 
 public class SkyVote extends JavaPlugin implements Listener{
@@ -40,7 +41,7 @@ public class SkyVote extends JavaPlugin implements Listener{
 	Objective objective;
 	ScoreboardManager manager;
 	public String updatemsg;
-	private VersionChecker updatechecker;
+	private VersionCheckerSV updatechecker;
 	
 	public void ScoreBoardCreate()
 	{
@@ -100,7 +101,7 @@ public class SkyVote extends JavaPlugin implements Listener{
 		Config.registerConfig("config", "config.yml", this);
 		Config.load("config");
 		String lang = Config.getConfig("config").getString("DataSource.lang");
-		updatechecker = new VersionChecker(this);
+		updatechecker = new VersionCheckerSV(this);
 		File message = new File("plugins/SkyVote/messages_"+lang.toLowerCase()+".yml");
 				
 		if(updatechecker.rawMessage("https://raw.githubusercontent.com/dom133/SkyVote/master/messages_"+lang.toLowerCase()+".yml")==null)
@@ -130,6 +131,13 @@ public class SkyVote extends JavaPlugin implements Listener{
 		}
 		updatemsg = messages.get("g31").toString();
 		updatechecker.startUpdateCheck();
+		
+		try {
+	        Metrics metrics = new Metrics(this);
+	        metrics.start();
+	    } catch (IOException e) {
+	        // Failed to submit the stats :-(
+	    }
 	}
 	
 	@Override

@@ -90,6 +90,7 @@ public class Commands implements CommandExecutor{
 			plugin.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore(ChatColor.GREEN+glos1+": ").setScore(0);
 			plugin.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore(ChatColor.GREEN+glos2+": ").setScore(0);
 			if(console.equals("nie"))player.sendMessage(ChatColor.GOLD+plugin.messages.get("g2").toString());
+			else System.out.println(plugin.messages.get("g2").toString());
 		}
 	}
 	
@@ -323,12 +324,12 @@ public class Commands implements CommandExecutor{
 											plugin.glosy[0]=0;
 											plugin.glosy[1]=0;
 											plugin.ScoreBoardClear();
-											System.out.println(ChatColor.GOLD+plugin.messages.get("g12").toString());
+											System.out.println(plugin.messages.get("g12").toString());
 											return true;
 										}
 										else
 										{
-											System.out.println(ChatColor.RED+plugin.messages.get("g13").toString());
+											System.out.println(plugin.messages.get("g13").toString());
 											return true;
 										}
 								}

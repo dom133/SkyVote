@@ -31,25 +31,25 @@ public class VoteInfo extends BukkitRunnable{
 		if(vip==null)
 		{
 			Bukkit.broadcastMessage(ChatColor.GOLD+"======================"+plugin.messages.get("g1").toString()+"=====================");
-			Bukkit.broadcastMessage(ChatColor.GOLD+plugin.vote.get("tresc").toString());
+			Bukkit.broadcastMessage(ChatColor.GRAY+plugin.vote.get("tresc").toString());
 			Bukkit.broadcastMessage(ChatColor.GOLD+"=====================================================");
-			Bukkit.broadcastMessage(ChatColor.GOLD+Message(plugin.messages.get("g7").toString(), plugin.vote.get("glos1").toString(), plugin.vote.get("glos2").toString()));
+			Bukkit.broadcastMessage(ChatColor.GREEN+Message(plugin.messages.get("g7").toString(), plugin.vote.get("glos1").toString(), plugin.vote.get("glos2").toString()));
 			Bukkit.broadcastMessage(ChatColor.GOLD+"=====================================================");
 		}
 		else if(vip.toLowerCase().equals("vip"))
 		{
 			Bukkit.broadcast(ChatColor.GOLD+"======================"+plugin.messages.get("g1").toString()+"=====================", "svote.vip");
-			Bukkit.broadcast(ChatColor.GOLD+plugin.vote.get("tresc").toString(), "svote.vip");
+			Bukkit.broadcast(ChatColor.GRAY+plugin.vote.get("tresc").toString(), "svote.vip");
 			Bukkit.broadcast(ChatColor.GOLD+"=====================================================", "svote.vip");
-			Bukkit.broadcast(ChatColor.GOLD+Message(plugin.messages.get("g7").toString(), plugin.vote.get("glos1").toString(), plugin.vote.get("glos2").toString()), "svote.vip");
+			Bukkit.broadcast(ChatColor.GREEN+Message(plugin.messages.get("g7").toString(), plugin.vote.get("glos1").toString(), plugin.vote.get("glos2").toString()), "svote.vip");
 			Bukkit.broadcast(ChatColor.GOLD+"=====================================================", "svote.vip");
 		}
 		else
 		{
 			Bukkit.broadcastMessage(ChatColor.GOLD+"======================"+plugin.messages.get("g1").toString()+"=====================");
-			Bukkit.broadcastMessage(ChatColor.GOLD+plugin.vote.get("tresc").toString());
+			Bukkit.broadcastMessage(ChatColor.GRAY+plugin.vote.get("tresc").toString());
 			Bukkit.broadcastMessage(ChatColor.GOLD+"=====================================================");
-			Bukkit.broadcastMessage(ChatColor.GOLD+Message(plugin.messages.get("g7").toString(), plugin.vote.get("glos1").toString(), plugin.vote.get("glos2").toString()));
+			Bukkit.broadcastMessage(ChatColor.GREEN+Message(plugin.messages.get("g7").toString(), plugin.vote.get("glos1").toString(), plugin.vote.get("glos2").toString()));
 			Bukkit.broadcastMessage(ChatColor.GOLD+"=====================================================");
 		}
 	}

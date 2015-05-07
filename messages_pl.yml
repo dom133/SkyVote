@@ -24,7 +24,7 @@ g23: /svote autor - Pokazuje autora pluginu
 g24: /svote add <tresc> <glos1> <glos2> <czas trwania> <tyklko vip> - Dodaje glosowanie
 g25: /svote remove - Usuwa trwajace glosowanie
 g26: Nie podales ktoregos z argumentow!!!
-g27: Glosowanie zakonczoe
+g27: Glosowanie zakonczone
 g28: Wyniki to
 g29: Obecnie, trwa juz glosowanie
 g30: Czas trwania glosowania jest nieprawidlowy!!!

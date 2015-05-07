@@ -1,6 +1,6 @@
 name: SkyVote
 main: pl.dom133.skyvote.SkyVote
-version: 1.0.7
+version: 1.0.8
 
 permissions:
     svote.*:
